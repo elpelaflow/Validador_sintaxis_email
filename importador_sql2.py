@@ -50,7 +50,7 @@ def extraer_emails_validos(texto, max_emails=None):
 
     if encontrados:
         # Descartar mails que finalicen con extensiones de imágenes
-        encontrados = [m for m in encontrados if not re.search(r"\.(png|jpe?g|gif|bmp|svg)$", m, re.IGNORECASE)]
+        encontrados = [m for m in encontrados if not re.search(r"\.(png|jpe?g|gif|bmp|svg|webp)$", m, re.IGNORECASE)]
         # Descartar mails automáticos de Sentry de Wixpress y subdominios de
         # sentry.io
         encontrados = [
@@ -60,6 +60,11 @@ def extraer_emails_validos(texto, max_emails=None):
                 m,
                 re.IGNORECASE,
             )
+        ]
+        placeholders = ("ejemplo", "nombre", "tunombre", "tuemail")
+        encontrados = [
+            m for m in encontrados
+            if not any(ph in part.lower() for ph in placeholders for part in m.split("@"))
         ]
         if max_emails is not None:
             encontrados = encontrados[:max_emails]
