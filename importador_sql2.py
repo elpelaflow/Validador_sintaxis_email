@@ -4,6 +4,7 @@ import pyodbc
 from datetime import datetime
 from collections import defaultdict
 from tkinter import Tk, filedialog, messagebox
+import re
 
 # CONFIGURACIÓN PRINCIPAL
 database_name = "LeadsDB"
@@ -16,6 +17,28 @@ def infer_sql_type(serie):
 # Crear carpeta de logs si no existe
 logs_folder = os.path.join(os.getcwd(), "logs")
 os.makedirs(logs_folder, exist_ok=True)
+
+# FUNCION PARA EXTRAER EMAILS VALIDOS DE UN TEXTO
+def extraer_emails_validos(texto):
+    """Devuelve las direcciones de correo válidas encontradas en el texto.
+
+    Si no se encuentra ninguna coincidencia, se devuelve el texto original.
+    Se eliminan aquellos correos que terminan con extensiones de imagen.
+    """
+
+    if not isinstance(texto, str):
+        texto = str(texto)
+
+    patron = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
+    encontrados = re.findall(patron, texto)
+
+    if encontrados:
+        # Descartar mails que finalicen con extensiones de imágenes
+        encontrados = [m for m in encontrados if not re.search(r"\.(png|jpe?g|gif|bmp|svg)$", m, re.IGNORECASE)]
+        if encontrados:
+            return ",".join(encontrados)
+
+    return texto
 
 # FUNCIÓN PRINCIPAL
 def importar_archivo_csv(csv_path):
@@ -32,7 +55,13 @@ def importar_archivo_csv(csv_path):
     )
 
     # ✅ Conversión obligatoria a texto para evitar errores de tipo
+    
     df = df.astype(str).fillna("")
+    
+    # Limpiar posibles columnas de email
+    for col in df.columns:
+        if "mail" in col.lower():
+            df[col] = df[col].apply(extraer_emails_validos)
 
     # CONECTAR A SQL SERVER
     conn_str = (
