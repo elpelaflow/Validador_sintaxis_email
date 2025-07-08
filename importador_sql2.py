@@ -61,7 +61,7 @@ def extraer_emails_validos(texto, max_emails=None):
                 re.IGNORECASE,
             )
         ]
-        placeholders = ("ejemplo", "nombre", "tunombre", "tuemail")
+        placeholders = ("ejemplo", "nombre", "tunombre", "tuemail", "example")
         encontrados = [
             m for m in encontrados
             if not any(ph in part.lower() for ph in placeholders for part in m.split("@"))
@@ -91,9 +91,15 @@ def importar_archivo_csv(csv_path):
     )
 
     # ✅ Conversión obligatoria a texto para evitar errores de tipo
-    
-    df = df.astype(str).fillna("")
-    
+
+    # Reemplazar valores faltantes antes de convertir a texto para evitar
+    # que aparezca la cadena "nan" en la tabla final
+    df = df.fillna("").astype(str)
+
+    # Asegurarse de que cadenas literales "nan" o "NaN" se interpreten como
+    # celdas vacías en todo el DataFrame
+    df.replace(["nan", "NaN"], "", inplace=True)
+
     # Limpiar posibles columnas de email
     for col in df.columns:
         if "mail" in col.lower():
