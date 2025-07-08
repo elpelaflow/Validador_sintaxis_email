@@ -2,4 +2,5 @@
 
 Este proyecto permite importar archivos CSV a SQL Server mediante una interfaz gráfica.
 
-Los detalles de cualquier error se almacenan en `logs/app.log`.
+Si la aplicación encuentra algún problema, los detalles se registran en `logs/app.log`.
+Revisa ese archivo para obtener información técnica sobre el error.

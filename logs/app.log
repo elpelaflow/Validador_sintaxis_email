@@ -1,0 +1,35 @@
+2025-07-07 22:22:53,970 [INFO] Aplicación iniciada
+2025-07-07 22:22:59,957 [INFO] Archivo seleccionado: C:/Users/El Pela Flow/OneDrive/Escritorio/1212.csv
+2025-07-07 22:22:59,957 [INFO] Iniciando importación de C:/Users/El Pela Flow/OneDrive/Escritorio/1212.csv
+2025-07-07 22:22:59,960 [ERROR] Error durante la importación
+Traceback (most recent call last):
+  File "c:\Users\El Pela Flow\OneDrive\Documentos\leads\importador_sql2.py", line 193, in seleccionar_csv
+    total, errores, log, informe = importar_archivo_csv(file_path)
+                                   ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "c:\Users\El Pela Flow\OneDrive\Documentos\leads\importador_sql2.py", line 60, in importar_archivo_csv
+    df = pd.read_csv(
+        csv_path,
+    ...<3 lines>...
+        skip_blank_lines=True
+    )
+  File "C:\Users\El Pela Flow\OneDrive\Documentos\leads\venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\El Pela Flow\OneDrive\Documentos\leads\venv\Lib\site-packages\pandas\io\parsers\readers.py", line 626, in _read
+    return parser.read(nrows)
+           ~~~~~~~~~~~^^^^^^^
+  File "C:\Users\El Pela Flow\OneDrive\Documentos\leads\venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1923, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        nrows
+        ^^^^^
+    )
+    ^
+  File "C:\Users\El Pela Flow\OneDrive\Documentos\leads\venv\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 234, in read
+    chunks = self._reader.read_low_memory(nrows)
+  File "pandas/_libs/parsers.pyx", line 838, in pandas._libs.parsers.TextReader.read_low_memory
+  File "pandas/_libs/parsers.pyx", line 905, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 874, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 891, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "pandas/_libs/parsers.pyx", line 2061, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 20 fields in line 24, saw 21
+

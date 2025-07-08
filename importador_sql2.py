@@ -5,6 +5,7 @@ from datetime import datetime
 from collections import defaultdict
 from tkinter import Tk, filedialog, messagebox
 import re
+import logging
 
 # CONFIGURACIÓN PRINCIPAL
 database_name = "LeadsDB"
@@ -17,6 +18,16 @@ def infer_sql_type(serie):
 # Crear carpeta de logs si no existe
 logs_folder = os.path.join(os.getcwd(), "logs")
 os.makedirs(logs_folder, exist_ok=True)
+
+# Configurar logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler(os.path.join(logs_folder, "app.log"), encoding="utf-8"),
+        logging.StreamHandler()
+    ]
+)
 
 # FUNCION PARA EXTRAER EMAILS VALIDOS DE UN TEXTO
 def extraer_emails_validos(texto):
@@ -43,7 +54,7 @@ def extraer_emails_validos(texto):
 # FUNCIÓN PRINCIPAL
 def importar_archivo_csv(csv_path):
     table_name = os.path.splitext(os.path.basename(csv_path))[0]
-    print(f"\n📥 Importando archivo: {csv_path}")
+    logging.info("Iniciando importaci\u00f3n de %s", csv_path)
 
     # ✅ Lectura segura del CSV
     df = pd.read_csv(
@@ -112,6 +123,7 @@ def importar_archivo_csv(csv_path):
         except Exception as e:
             errores += 1
             log_file.write(f"Fila {idx} → {e}\n")
+            logging.exception("Error al insertar fila %s", idx)
 
             # Inferir columna y tipo de error
             err_text = str(e).lower()
@@ -142,6 +154,13 @@ def importar_archivo_csv(csv_path):
     cursor.close()
     conn.close()
 
+    logging.info(
+        "Finalizada importaci\u00f3n de %s: %d filas procesadas, %d errores",
+        csv_path,
+        len(df),
+        errores,
+    )
+
     # Crear informe descriptivo
     with open(informe_file_path, "w", encoding="utf-8") as f:
         f.write(f"📄 Resumen de errores durante la importación de {os.path.basename(csv_path)}\n\n")
@@ -170,12 +189,14 @@ def seleccionar_csv():
         return
 
     try:
+        logging.info("Archivo seleccionado: %s", file_path)
         total, errores, log, informe = importar_archivo_csv(file_path)
         msg = f"✅ {total - errores} filas importadas.\n❌ {errores} errores."
         if errores:
             msg += f"\nLog técnico: {log}\nResumen: {informe}"
         messagebox.showinfo("Importación finalizada", msg)
     except Exception as e:
+        logging.exception("Error durante la importaci\u00f3n")
         messagebox.showerror("Error durante la importación", str(e))
 
 # Lanzar UI
@@ -189,4 +210,5 @@ Label(root, text="Seleccioná un archivo CSV para importar", font=("Arial", 12))
 Button(root, text="Seleccionar archivo", command=seleccionar_csv, width=30).pack(pady=10)
 Label(root, text="© El Pela Flow").pack(side="bottom", pady=10)
 
+logging.info("Aplicaci\u00f3n iniciada")
 root.mainloop()
