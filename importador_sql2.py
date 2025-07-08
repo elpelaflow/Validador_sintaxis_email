@@ -36,7 +36,8 @@ def extraer_emails_validos(texto):
     Si no se encuentra ninguna coincidencia, se devuelve una cadena vacía.
     Se eliminan aquellos correos que terminan con extensiones de imagen y las
     entradas automáticas de ``sentry.wixpress.com`` o ``sentry-next.wixpress.com``
-    que usan identificadores hexadecimales.
+    y dominios ``*.sentry.io`` (incluyendo ``*.ingest.sentry.io``) que usan
+    identificadores hexadecimales.
     """
 
     if not isinstance(texto, str):
@@ -48,8 +49,16 @@ def extraer_emails_validos(texto):
     if encontrados:
         # Descartar mails que finalicen con extensiones de imágenes
         encontrados = [m for m in encontrados if not re.search(r"\.(png|jpe?g|gif|bmp|svg)$", m, re.IGNORECASE)]
-        # Descartar mails automáticos de Sentry de Wixpress
-        encontrados = [m for m in encontrados if not re.match(r"^[a-f0-9]{32}@sentry(?:-next)?\.wixpress\.com$", m, re.IGNORECASE)]
+        # Descartar mails automáticos de Sentry de Wixpress y subdominios de
+        # sentry.io
+        encontrados = [
+            m for m in encontrados
+            if not re.match(
+                r"^[a-f0-9]{32}@(sentry(?:-next)?\.wixpress\.com|(?:.+\.)?sentry\.io)$",
+                m,
+                re.IGNORECASE,
+            )
+        ]
         if encontrados:
             return ",".join(encontrados)
 

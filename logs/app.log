@@ -49,3 +49,11 @@ pandas.errors.ParserError: Error tokenizing data. C error: Expected 20 fields in
 2025-07-07 23:41:03,159 [INFO] Archivo seleccionado: C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba3.csv
 2025-07-07 23:41:03,160 [INFO] Iniciando importación de C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba3.csv
 2025-07-07 23:41:07,013 [INFO] Finalizada importación de C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba3.csv: 3080 filas procesadas, 0 errores
+2025-07-08 00:00:49,879 [INFO] Aplicación iniciada
+2025-07-08 00:01:03,533 [INFO] Archivo seleccionado: C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba4.csv
+2025-07-08 00:01:03,534 [INFO] Iniciando importación de C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba4.csv
+2025-07-08 00:01:07,660 [INFO] Finalizada importación de C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba4.csv: 3080 filas procesadas, 0 errores
+2025-07-08 00:16:10,025 [INFO] Aplicación iniciada
+2025-07-08 00:16:19,768 [INFO] Archivo seleccionado: C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba5.csv
+2025-07-08 00:16:19,769 [INFO] Iniciando importación de C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba5.csv
+2025-07-08 00:16:23,728 [INFO] Finalizada importación de C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba5.csv: 3080 filas procesadas, 0 errores
