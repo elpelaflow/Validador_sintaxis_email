@@ -33,7 +33,7 @@ logging.basicConfig(
 def extraer_emails_validos(texto):
     """Devuelve las direcciones de correo válidas encontradas en el texto.
 
-    Si no se encuentra ninguna coincidencia, se devuelve el texto original.
+    Si no se encuentra ninguna coincidencia, se devuelve una cadena vacía.
     Se eliminan aquellos correos que terminan con extensiones de imagen.
     """
 
@@ -49,7 +49,7 @@ def extraer_emails_validos(texto):
         if encontrados:
             return ",".join(encontrados)
 
-    return texto
+    return ""
 
 # FUNCIÓN PRINCIPAL
 def importar_archivo_csv(csv_path):
