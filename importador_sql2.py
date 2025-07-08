@@ -10,6 +10,8 @@ import logging
 # CONFIGURACIÓN PRINCIPAL
 database_name = "LeadsDB"
 server = r"(local)\SQLEXPRESS"
+# Cantidad máxima de correos a conservar por casilla (None = sin límite)
+max_emails = 3
 
 # FUNCIÓN: Forzar todos los tipos a NVARCHAR(MAX)
 def infer_sql_type(serie):
@@ -30,7 +32,7 @@ logging.basicConfig(
 )
 
 # FUNCION PARA EXTRAER EMAILS VALIDOS DE UN TEXTO
-def extraer_emails_validos(texto):
+def extraer_emails_validos(texto, max_emails=None):
     """Devuelve las direcciones de correo válidas encontradas en el texto.
 
     Si no se encuentra ninguna coincidencia, se devuelve una cadena vacía.
@@ -59,6 +61,8 @@ def extraer_emails_validos(texto):
                 re.IGNORECASE,
             )
         ]
+        if max_emails is not None:
+            encontrados = encontrados[:max_emails]
         if encontrados:
             return ",".join(encontrados)
 
@@ -88,7 +92,7 @@ def importar_archivo_csv(csv_path):
     # Limpiar posibles columnas de email
     for col in df.columns:
         if "mail" in col.lower():
-            df[col] = df[col].apply(extraer_emails_validos)
+            df[col] = df[col].apply(lambda x: extraer_emails_validos(x, max_emails))
 
     # CONECTAR A SQL SERVER
     conn_str = (
