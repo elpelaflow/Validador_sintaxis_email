@@ -1,1 +1,4 @@
 *.csv
+venv/
+data/
+logs/
