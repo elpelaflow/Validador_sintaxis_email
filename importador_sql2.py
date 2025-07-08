@@ -59,9 +59,12 @@ def importar_archivo_csv(csv_path):
     # ✅ Lectura segura del CSV
     df = pd.read_csv(
         csv_path,
-        encoding="utf-8",
-        delimiter=",",
-        quotechar='"',
+        sep=';',          # ← clave
+        quotechar='"',    # si más adelante necesitás encapsular textos
+        decimal=',',      # para que 4,46 se interprete como 4.46
+        encoding='utf-8',
+        engine='python',  # motor más tolerante con separadores “raros”
+        on_bad_lines='warn',   # opcional: avisa pero no rompe
         skip_blank_lines=True
     )
 

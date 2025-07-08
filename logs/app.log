@@ -33,3 +33,11 @@ Traceback (most recent call last):
   File "pandas/_libs/parsers.pyx", line 2061, in pandas._libs.parsers.raise_parser_error
 pandas.errors.ParserError: Error tokenizing data. C error: Expected 20 fields in line 24, saw 21
 
+2025-07-07 23:06:56,475 [INFO] Aplicación iniciada
+2025-07-07 23:07:02,440 [INFO] Archivo seleccionado: C:/Users/El Pela Flow/OneDrive/Escritorio/1212.csv
+2025-07-07 23:07:02,440 [INFO] Iniciando importación de C:/Users/El Pela Flow/OneDrive/Escritorio/1212.csv
+2025-07-07 23:07:06,797 [INFO] Finalizada importación de C:/Users/El Pela Flow/OneDrive/Escritorio/1212.csv: 3080 filas procesadas, 0 errores
+2025-07-07 23:08:40,227 [INFO] Aplicación iniciada
+2025-07-07 23:08:44,581 [INFO] Archivo seleccionado: C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba.csv
+2025-07-07 23:08:44,582 [INFO] Iniciando importación de C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba.csv
+2025-07-07 23:08:48,685 [INFO] Finalizada importación de C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba.csv: 3080 filas procesadas, 0 errores
