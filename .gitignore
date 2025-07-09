@@ -1,3 +1,6 @@
 *.csv
 venv/
 data/
+*.txt
+logs/
+results/

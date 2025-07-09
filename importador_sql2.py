@@ -81,7 +81,8 @@ def importar_archivo_csv(csv_path):
     # ✅ Lectura segura del CSV
     df = pd.read_csv(
         csv_path,
-        sep=';',          # ← clave
+        sep=None,
+        #sep=';',          # ← clave
         quotechar='"',    # si más adelante necesitás encapsular textos
         decimal=',',      # para que 4,46 se interprete como 4.46
         encoding='utf-8',

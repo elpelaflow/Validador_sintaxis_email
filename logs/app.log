@@ -69,3 +69,28 @@ pandas.errors.ParserError: Error tokenizing data. C error: Expected 20 fields in
 2025-07-08 01:45:58,393 [INFO] Archivo seleccionado: C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba8.csv
 2025-07-08 01:45:58,394 [INFO] Iniciando importación de C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba8.csv
 2025-07-08 01:46:02,940 [INFO] Finalizada importación de C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba8.csv: 3080 filas procesadas, 0 errores
+2025-07-08 01:58:12,341 [INFO] Aplicación iniciada
+2025-07-08 01:58:16,472 [INFO] Archivo seleccionado: C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba8.csv
+2025-07-08 01:58:16,473 [INFO] Iniciando importación de C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba8.csv
+2025-07-08 01:58:20,917 [INFO] Finalizada importación de C:/Users/El Pela Flow/OneDrive/Escritorio/archivoprueba8.csv: 3080 filas procesadas, 0 errores
+2025-07-08 16:51:16,574 [INFO] Aplicación iniciada
+2025-07-08 16:51:22,300 [INFO] Archivo seleccionado: C:/Users/El Pela Flow/OneDrive/Escritorio/Resultados_puros_indumentaria.csv
+2025-07-08 16:51:22,300 [INFO] Iniciando importación de C:/Users/El Pela Flow/OneDrive/Escritorio/Resultados_puros_indumentaria.csv
+2025-07-08 16:51:30,356 [INFO] Finalizada importación de C:/Users/El Pela Flow/OneDrive/Escritorio/Resultados_puros_indumentaria.csv: 4905 filas procesadas, 0 errores
+2025-07-09 10:32:28,600 [INFO] Aplicación iniciada
+2025-07-09 10:33:07,404 [INFO] Archivo seleccionado: C:/Users/El Pela Flow/OneDrive/Documentos/leads/scrap_leads/resultados.csv
+2025-07-09 10:33:07,404 [INFO] Iniciando importación de C:/Users/El Pela Flow/OneDrive/Documentos/leads/scrap_leads/resultados.csv
+2025-07-09 10:33:07,875 [ERROR] Error durante la importación
+Traceback (most recent call last):
+  File "c:\Users\El Pela Flow\OneDrive\Documentos\leads\importador_sql2.py", line 224, in seleccionar_csv
+    total, errores, log, informe = importar_archivo_csv(file_path)
+                                   ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "c:\Users\El Pela Flow\OneDrive\Documentos\leads\importador_sql2.py", line 134, in importar_archivo_csv
+    cursor.execute(create_sql)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^
+pyodbc.ProgrammingError: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The identifier that starts with 'input_id,link,title,category,address,open_hours,popular_times,website,phone,plus_code,review_count,review_rating,reviews_per_rat' is too long. Maximum length is 128. (103) (SQLExecDirectW)")
+2025-07-09 10:42:13,385 [INFO] Aplicación iniciada
+2025-07-09 10:42:17,497 [INFO] Archivo seleccionado: C:/Users/El Pela Flow/OneDrive/Documentos/leads/scrap_leads/resultados.csv
+2025-07-09 10:42:17,498 [INFO] Iniciando importación de C:/Users/El Pela Flow/OneDrive/Documentos/leads/scrap_leads/resultados.csv
+2025-07-09 10:42:21,964 [INFO] Finalizada importación de C:/Users/El Pela Flow/OneDrive/Documentos/leads/scrap_leads/resultados.csv: 1617 filas procesadas, 0 errores
+2025-07-09 13:38:07,227 [INFO] Aplicación iniciada
