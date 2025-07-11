@@ -1,6 +1,0 @@
-📄 Resumen de errores durante la importación de archivoprueba2.csv
-
-Total de filas procesadas: 3080
-Errores detectados: 0
-
-✅ No se detectaron errores.
