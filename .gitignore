@@ -3,5 +3,5 @@ venv/
 data/
 *.txt
 logs/
-results/
+*results/
 scrap_leads/
